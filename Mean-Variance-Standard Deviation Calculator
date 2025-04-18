@@ -1,0 +1,49 @@
+import numpy as np
+
+def calculate(numbers):
+    # Check if the input list contains exactly 9 numbers
+    if len(numbers) != 9:
+        raise ValueError("List must contain nine numbers.")
+    
+    # Convert the list into a 3x3 NumPy array (matrix)
+    matrix = np.array(numbers).reshape(3, 3)
+    
+    # Create a dictionary to store the results
+    result = {
+        'mean': [],
+        'variance': [],
+        'standard deviation': [],
+        'max': [],
+        'min': [],
+        'sum': []
+    }
+    
+    # Calculate statistics for each column (axis=0), each row (axis=1), and the entire matrix
+    result['mean'].append(matrix.mean(axis=0).tolist())  # mean for each column
+    result['mean'].append(matrix.mean(axis=1).tolist())  # mean for each row
+    result['mean'].append(matrix.mean().tolist())  # mean for the entire matrix
+    
+    result['variance'].append(matrix.var(axis=0).tolist())  # variance for each column
+    result['variance'].append(matrix.var(axis=1).tolist())  # variance for each row
+    result['variance'].append(matrix.var().tolist())  # variance for the entire matrix
+    
+    result['standard deviation'].append(matrix.std(axis=0).tolist())  # std for each column
+    result['standard deviation'].append(matrix.std(axis=1).tolist())  # std for each row
+    result['standard deviation'].append(matrix.std().tolist())  # std for the entire matrix
+    
+    result['max'].append(matrix.max(axis=0).tolist())  # max for each column
+    result['max'].append(matrix.max(axis=1).tolist())  # max for each row
+    result['max'].append(matrix.max().tolist())  # max for the entire matrix
+    
+    result['min'].append(matrix.min(axis=0).tolist())  # min for each column
+    result['min'].append(matrix.min(axis=1).tolist())  # min for each row
+    result['min'].append(matrix.min().tolist())  # min for the entire matrix
+    
+    result['sum'].append(matrix.sum(axis=0).tolist())  # sum for each column
+    result['sum'].append(matrix.sum(axis=1).tolist())  # sum for each row
+    result['sum'].append(matrix.sum().tolist())  # sum for the entire matrix
+    
+    # Return the result dictionary
+    return result
+result = calculate([0, 1, 2, 3, 4, 5, 6, 7, 8])
+print(result)
